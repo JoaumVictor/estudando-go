@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 type Database struct {
- 	Username string
-	Name string
-	Age int
-	ID int
-	Email string
+	Username string
+ Name string
+ Age int
+ ID int
+ Email string
 }
 
 func findStructByName(name string, db []Database)(findUserByName Database){
@@ -19,8 +19,26 @@ func findStructByName(name string, db []Database)(findUserByName Database){
 	return
 }
 
+func findStructByID(ID int, db []Database)(findUserByID Database){
+	for _, user := range db{
+		if(user.ID == ID) {
+			findUserByID = user
+		}
+	}
+	return
+}
+
 func printSalve(db Database)(result string){
 	result = fmt.Sprintf("Opa salve %s turu baum?", db.Name)
+	return
+}
+
+func removeUser(name string, db []Database)(newDB []Database) {
+	for i, v := range db {
+    if v.Name == name {
+			newDB = append(db[:i], db[i+1:]...)
+    }
+	}
 	return
 }
 
@@ -40,7 +58,7 @@ func main() {
 		Name: "João",
 		Age: 22,
 		ID: 2,
-		Email: "Pasipinho@gmail.com",
+		Email: "pasipinho@gmail.com",
 	});
 
 	db = append(db, Database{
@@ -67,10 +85,15 @@ func main() {
 		Email: "bebetogameplay@gmail.com",
 	});
 	
-	clebStruct := findStructByName("Alberto", db)
+	findUser1 := findStructByName("João", db)
 
-	fmt.Println(clebStruct)
-	fmt.Println(printSalve(clebStruct))
+	findUser2 := findStructByID(5, db)
+
+	newListUser := removeUser("Alberto", db)
+
+	fmt.Println(findUser1)
+
+	fmt.Println(findUser2)
+
+	fmt.Println(newListUser)
 }
-
-// a meta agr é descobrir como tirar um objeto do array

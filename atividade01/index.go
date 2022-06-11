@@ -17,4 +17,4 @@ func main() {
 }
 
 // pra usar esse tipo de "console.log" o go importa aquele fmt na linha 3
-// todo aplicação tem que ter um package main pra poder rodar
+// toda aplicação tem que ter um package main pra poder rodar
